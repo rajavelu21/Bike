@@ -1,0 +1,118 @@
+<odoo>
+  <data>
+<!--     explicit list view definition -->
+    
+    <record model="ir.ui.view" id="bike_repire.list">
+      <field name="name">Bike repaire list</field>
+      <field name="model">bike_repire.bike_repire</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="bike_name" />
+          <field name="bike_no"/>
+          <field name="note" />
+          <field name="bike_seq"/>
+         </tree>
+      </field>
+    </record>
+    
+    
+<!--      <record model="ir.ui.view" id="bike_repire.list_search">
+      <field name="name">Bike list search</field>
+      <field name="model">bike_repire.bike_repire</field>
+      <field name="arch" type="xml">
+        <search string="Bike list search">
+          <field name="bike_name" filter_domain="['|',('bike_name','ilike', self),('bike_no','ilike',self),('bike_seq','ilike',self)]" /> 
+         </search>
+      </field>
+    </record> -->
+    
+    
+         <record id="view_bike_repire_search" model="ir.ui.view">
+            <field name="name">bike.list.search</field>
+            <field name="model">bike_repire.bike_repire</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <search string="Search Bike list">
+                    <field name="bike_name" filter_domain="['|', ('bike_name','ilike',self), ('bike_no','ilike',self)]" string="Search list"/>
+            <!--         <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <filter name="sales" domain="[('type', '=', 'sale')]" string="Sales"/>
+                    <filter name="purchases" domain="[('type', '=', 'purchase')]" string="Purchases"/>
+                    <filter name="liquidity" domain="['|', ('type', '=', 'cash'), ('type', '=', 'bank')]" string="Liquidity"/>
+                    <filter name="miscellaneous" domain="[('type', 'not in', ['sale', 'purchase', 'cash', 'bank'])]" string="Miscellaneous"/>
+                    <filter name="dashboard" string="Favorites" domain="[('show_on_dashboard', '=', True)]"/> -->
+                </search>
+            </field>
+        </record>
+    
+    <record id="bike_gantt_view" model="ir.ui.view">
+        <field name="name">Bike gnatt view</field>
+        <field name="model">bike_repire.bike_repire</field>
+        <field name="arch" type="xml">
+            <gantt string="gantt bike" date_start="start_date" date_stop="date_end"></gantt>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="bike_repire.form">
+            <field name="name">Bike repaire form</field>
+            <field name="model">bike_repire.bike_repire</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                    	<div class="oe_title">
+                    		<h1>
+                    			<field name="bike_seq" readonly="1"/>
+                    		</h1>
+                    	</div>
+                    	<group>
+                        <group name ="bike_detail">
+                         <field name="customer_name" widget="many2many_tags" options="{'color_field':'color','no_create_edit':True}" placeholder="Customer Name..."/>
+                            <field name="bike_name" />
+                            <field name="bike_no" />
+                            <field name="note" />
+                            </group>
+                            <group>
+                                <field name="blue" attrs="{'invisible':['|', ('pink', '=', True), ('yellow', '=', True)]}"/>
+                                <field name="pink" attrs="{'invisible':['|', ('blue', '=', True), ('yellow', '=', True)]}"/>
+                                <field name="yellow" attrs="{'invisible':['|', ('pink', '=', True), ('blue', '=', True)]}"/>
+                            </group>
+                            <group>
+               	                <field name="bike_image" widget='image' class="oe_title" />
+               	            </group>                        
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter" >
+				         <field name="message_follower_ids" widget="mail_followers"/>
+				         <field name="message_ids" widget="mail_thread"/>
+					</div>
+		        </form>
+
+            </field>
+        </record>
+   
+<!-- 
+    actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="bike_repire.action_window">
+      <field name="name">Raj TVS</field>
+      <field name="res_model">bike_repire.bike_repire</field>
+      <field name="view_mode">tree,form,kanban,gantt</field>
+    </record>
+      
+
+<!--     Top menu item
+ -->    
+    <menuitem name="Raj TVS" id="menu_root" sequence='-1'/>
+   
+<!--     menu categories -->
+    
+    <menuitem name="Bike" id="bike_repire.menu_1" parent="menu_root" sequence='0'/>
+    
+    
+<!--     actions -->
+    
+    <menuitem name="Bike list" id="bike_repire.menu_1_list" parent="bike_repire.menu_1"
+              action="bike_repire.action_window"/>
+ 
+   
+  </data>
+</odoo>

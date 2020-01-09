@@ -1,0 +1,53 @@
+<odoo>
+
+        <record model="ir.ui.view" id="bike_repire.insurance_list">
+            <field name="name">Bike insurance list</field>
+            <field name="model">bike.insurance_renew</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="insurance_id"/>
+                    <field name="insurance_bike_id"/>
+                    <field name="insurance_number"/>   
+                    <field name="insurance_date"/>
+			        <field name="insurance_expiry"/>
+			        <field name="insurance_amount"/>
+	                <field name="insurance_type"/>     
+	                <field name="insurance_desc"/>     
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="bike_repire.insurance_form">
+            <field name="name">Bike insurance form</field>
+            <field name="model">bike.insurance_renew</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                        	    <field name="insurance_id"/>
+			                    <field name="insurance_bike_id"/>
+			                    <field name="insurance_number"/>
+			                    <field name="insurance_date"/>
+			                    <field name="insurance_expiry"/>
+			                    <field name="insurance_amount"/>
+	                            <field name="insurance_type"/>     
+	                            <field name="insurance_desc"/>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_window_insurance_renew">
+            <field name="name">Bike Insurance Renew</field>
+            <field name="res_model">bike.insurance_renew</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+        
+        <menuitem name="Bike Insurance" id="bike_repire_insurance" parent="menu_root"  sequence='2'/>
+        
+        <menuitem name="Insurance list" id="bike_repire_insurance_list" parent="bike_repire_insurance"
+              action="action_window_insurance_renew"/>
+
+</odoo>

@@ -1,0 +1,70 @@
+<odoo>
+
+        <record model="ir.ui.view" id="bike_repire.customer">
+            <field name="name">Customer list</field>
+            <field name="model">bike.customer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="customer_id" />
+                    <field name="customer_name" />
+                    <field name="customer_mobile" />
+                    <field name="customer_email" />
+			        <field name="customer_address" />
+			        <field name="gender"/>
+                </tree>
+            </field>
+        </record>
+        
+        
+     <record model="ir.ui.view" id="bike_repire.customer_search">
+      <field name="name">Customer list search</field>
+      <field name="model">bike.customer</field>
+      <field name="arch" type="xml">
+        <search string="Customer list search">
+          <field name="customer_name" filter_domain="['|',('customer_name','ilike', self),('customer_mobile','ilike',self),('customer_address','ilike',self)]" /> 
+ 			<separator/>
+		      	<filter string="Male" name="male" domain="[('gender','=','male')]"/>
+		      	<filter string="Female" name="female" domain="[('gender','=','female')]"/>
+      		<searchpanel>
+      		<field name="gender"  icon="fa-user"/>
+      	</searchpanel>
+         </search>
+       </field>
+    </record>
+           
+        <record model="ir.ui.view" id="bike_repire.customerform">
+            <field name="name">Customer form</field>
+            <field name="model">bike.customer</field>
+            <field name="arch" type="xml">
+                <form>
+                <header>
+                	<!-- <button name="%(create_appointment_wizard)d" string="Create Appoinment" type="action" class="oe_highlight"/> -->
+                	 <button name="%(create_appointment_wizard)d" string="Create Appoinment" type="action" class="oe_highlight"/>
+                </header>
+                    <sheet>
+                        <group>
+                        	    <field name="customer_id" />
+			                    <field name="customer_name" />
+			                    <field name="customer_mobile" />
+			                    <field name="customer_email" />
+			                    <field name="customer_address" />
+			                    <field name ="gender"/>
+	                    </group>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_window_customer">
+            <field name="name">Customer </field>
+            <field name="res_model">bike.customer</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+        
+        <menuitem name="Customer" id="customer" parent="menu_root"  sequence='3' />
+        
+                <menuitem name="Customer List" id="customer_list" parent="customer" action="action_window_customer" />
+
+
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bike_repire,bike_repire.bike_repire,model_bike_repire_bike_repire,,1,1,1,1
+access_bike_booking,bike.booking,model_bike_booking,,1,1,1,1
+access_bike_customer,Bike.customer,model_bike_customer,,1,1,1,1
+access_bike_repire_insurance_list,bike.insurance,model_bike_insurance_renew,,1,1,1,1
+access_bike_repire_enquiry_list,bike.enquiry_list,model_query_customer,,1,1,1,1

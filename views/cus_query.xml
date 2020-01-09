@@ -1,0 +1,46 @@
+<odoo>
+
+        <record model="ir.ui.view" id="bike_repire.query">
+            <field name="name">Query list</field>
+            <field name="model">query.customer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="query_id" />
+                    <field name="query_name" />
+                    <field name="query_type" />
+                    <field name="customer_name" />
+			        <field name="customer_no" />
+ 
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bike_repire.queryform">
+            <field name="name">Query form</field>
+            <field name="model">query.customer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                        	     <field name="query_id" />
+			                     <field name="query_name" />
+			                     <field name="query_type" />
+			                     <field name="customer_name" />
+						         <field name="customer_no" />
+	                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_window_query">
+            <field name="name">Enquiry </field>
+            <field name="res_model">query.customer</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+        
+        <menuitem name="Enquiry" id="enquiry" parent="menu_root"  sequence='4' />
+        
+                <menuitem name="Enquiry List" id="enquiry_list" parent="enquiry" action="action_window_query" />
+
+
+</odoo>
